@@ -2,17 +2,10 @@ package com.sda.erastotenes;
 
 public class Sito {
   public static void main(String[] args) {
-    int iloscElementow = 100000;
-    long start = System.currentTimeMillis();
+    int iloscElementow = 1000;
     sitoBoolean(iloscElementow);
-    long end = System.currentTimeMillis();
     System.out.println();
-    long start2 = System.currentTimeMillis();
     sitoInteger(iloscElementow);
-    long end2 = System.currentTimeMillis();
-    System.out.println();
-    System.out.println("BOOLEAN: "+(end - start));
-    System.out.println("Integer: "+(end2 - start2));
   }
 
   public static void sitoBoolean(int rozmiarTablicy){
