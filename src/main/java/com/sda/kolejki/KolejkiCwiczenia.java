@@ -10,19 +10,26 @@ import java.util.Queue;
 public class KolejkiCwiczenia {
   public static void main(String[] args) {
 //    testKolejkaZwykla();
-//    Comparator porownaniePrzezWiek = new PorownywarkaOsob();
 
-    Comparator<Osoba> porownanieNazwisk = new Comparator<Osoba>() {
-      @Override public int compare(Osoba o1, Osoba o2) {
-        if (o1.getNazwisko().compareToIgnoreCase(o2.getNazwisko()) < 0){
-          return -1;
-        }else if (o1.getNazwisko().compareToIgnoreCase(o2.getNazwisko()) > 0){
-          return 1;
-        }else{
-          return 0;
-        }
-      }
-    };
+    //1 sposób
+//    Comparator porownaniePrzezWiek = new PorownywarkaOsob();
+//    Queue<Osoba> kolejka = new PriorityQueue<>(porownaniePrzezWiek);
+
+    //2 sposób
+//    Comparator<Osoba> porownanieNazwisk = new Comparator<Osoba>() {
+//      @Override public int compare(Osoba o1, Osoba o2) {
+//        if (o1.getNazwisko().compareToIgnoreCase(o2.getNazwisko()) < 0){
+//          return -1;
+//        }else if (o1.getNazwisko().compareToIgnoreCase(o2.getNazwisko()) > 0){
+//          return 1;
+//        }else{
+//          return 0;
+//        }
+//      }
+//    };
+//    Queue<Osoba> kolejka = new PriorityQueue<>(porownanieNazwisk);
+
+    //3 sposób - ale klasa Osoba musi implementować Comparable
     Queue<Osoba> kolejka = new PriorityQueue<>();
     kolejka.offer(new Osoba("Jan", "Kowalski", 18));
     kolejka.offer(new Osoba("Mariusz", "nowak", 40));
