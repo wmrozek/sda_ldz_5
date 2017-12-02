@@ -40,6 +40,28 @@ public class Osoba implements Comparable<Osoba>{
     return "Osoba{" + "imie='" + imie + '\'' + ", nazwisko='" + nazwisko + '\'' + ", wiek=" + wiek + '}';
   }
 
+  @Override public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+
+    Osoba osoba = (Osoba) o;
+
+    if (wiek != osoba.wiek)
+      return false;
+    if (!imie.equals(osoba.imie))
+      return false;
+    return nazwisko.equals(osoba.nazwisko);
+  }
+
+  @Override public int hashCode() {
+    int result = imie.hashCode();
+    result = 31 * result + nazwisko.hashCode();
+    result = 31 * result + wiek;
+    return result;
+  }
+
   @Override public int compareTo(Osoba o) {
     if (this.getNazwisko().compareToIgnoreCase(o.getNazwisko()) < 0){
       return -1;

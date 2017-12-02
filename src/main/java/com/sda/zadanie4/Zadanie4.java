@@ -1,5 +1,7 @@
 package com.sda.zadanie4;
 
+import com.sda.model.Osoba;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -7,6 +9,8 @@ import java.util.Queue;
 
 public class Zadanie4 {
   public static void main(String[] args) {
+    Osoba osoba = new Osoba("a", "b", 22);
+    typKlasy(osoba);
     List<KryteriumSortujace> kryteria = new ArrayList<>();
     kryteria.add(KryteriumSortujace.ULICA);
     kryteria.add(KryteriumSortujace.MIEJSCOWOSC);
@@ -29,5 +33,10 @@ public class Zadanie4 {
 //    System.out.println(kolejka.poll());
 //    System.out.println(kolejka.poll());
 //    System.out.println(kolejka.poll());
+  }
+
+
+  public static void typKlasy(Object obj){
+    System.out.println(obj.getClass());
   }
 }
