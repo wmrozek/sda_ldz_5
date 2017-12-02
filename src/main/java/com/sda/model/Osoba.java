@@ -4,11 +4,27 @@ public class Osoba implements Comparable<Osoba>{
   private String imie;
   private String nazwisko;
   private int wiek;
+  private String pesel;
 
   public Osoba(String imie, String nazwisko, int wiek) {
     this.imie = imie;
     this.nazwisko = nazwisko;
     this.wiek = wiek;
+  }
+
+  public Osoba(String imie, String nazwisko, int wiek, String pesel) {
+    this.imie = imie;
+    this.nazwisko = nazwisko;
+    this.wiek = wiek;
+    this.pesel = pesel;
+  }
+
+  public String getPesel() {
+    return pesel;
+  }
+
+  public void setPesel(String pesel) {
+    this.pesel = pesel;
   }
 
   public String getImie() {

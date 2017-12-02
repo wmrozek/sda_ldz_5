@@ -45,6 +45,22 @@ public class Adres {
     this.nrBudynku = nrBudynku;
   }
 
+  @Override public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+
+    Adres adres = (Adres) o;
+
+    return miejscowosc.equals(adres.miejscowosc);
+  }
+
+  @Override public int hashCode() {
+    int result = miejscowosc.hashCode();
+    return result;
+  }
+
   @Override public String toString() {
     return "Adres{" + "miejscowosc='" + miejscowosc + '\'' + ", ulica='" + ulica + '\'' + ", kodPocztowy='" + kodPocztowy + '\'' + ", nrBudynku=" + nrBudynku + '}';
   }
