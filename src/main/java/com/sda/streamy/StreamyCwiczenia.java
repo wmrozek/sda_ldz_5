@@ -44,5 +44,15 @@ public class StreamyCwiczenia {
     String tekst = "adfsdfwf";
     tekst.trim().substring(0,5).trim().substring(0);
 
+    List<Integer> wynikiPodzielnePrzez2IWiekszeOd20 = liczby.stream()
+        .filter(liczba -> liczba>20 && liczba%2==0)
+        .filter(liczba -> {
+          int liczbaPodwojona = liczba *2;
+          return liczbaPodwojona%3==0 && liczbaPodwojona%4 ==0;
+        })
+        .collect(Collectors.toList());
+
+    System.out.println(wynikiPodzielnePrzez2IWiekszeOd20);
+
   }
 }
