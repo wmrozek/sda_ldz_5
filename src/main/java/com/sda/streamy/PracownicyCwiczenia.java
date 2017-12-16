@@ -3,17 +3,18 @@ package com.sda.streamy;
 import com.sda.csv.NarzedziaCsv;
 import com.sda.model.Plec;
 import com.sda.model.Pracownik;
-import com.sda.model.Samochod;
-import javafx.util.Pair;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class PracownicyCwiczenia {
@@ -70,8 +71,11 @@ public class PracownicyCwiczenia {
 //    zadanie3(pracownicy);
 //    zadanie4(pracownicy);
 //    zadanie7(pracownicy);
-    zadanie11(pracownicy);
+//    zadanie11(pracownicy);
+    lista5MiejscowosciZNajwiekszaLiczbaPracownikow(pracownicy);
+    lista5MiejscowosciZNajwiekszaLiczbaPracownikowDrugiSposob(pracownicy);
   }
+
 
   private static void zadanie11(List<Pracownik> pracownicy){
     Map<Integer, Long> mapa = new HashMap<>();
@@ -234,6 +238,72 @@ public class PracownicyCwiczenia {
       }
     }
     System.out.println(opcja4);
+  }
+
+  private static void lista5MiejscowosciZNajwiekszaLiczbaPracownikow(List<Pracownik> pracownicy){
+    Map<String, Integer> mapaMiejscowosci = new HashMap<>();
+    for (Pracownik pracownik : pracownicy){
+      String miejscowosc = pracownik.getMiejscowosc();
+      if (mapaMiejscowosci.containsKey(miejscowosc)){
+        Integer iloscPracownikow = mapaMiejscowosci.get(miejscowosc);
+        mapaMiejscowosci.put(miejscowosc, iloscPracownikow+1);
+      }else{
+        mapaMiejscowosci.put(miejscowosc, 1);
+      }
+    }
+
+    TreeMap<Integer, List<String>> posortowanaMapa = new TreeMap<>(new Comparator<Integer>() {
+      @Override public int compare(Integer o1, Integer o2) {
+        return o2.compareTo(o1);
+      }
+    });
+    for (Map.Entry<String, Integer> para : mapaMiejscowosci.entrySet()){
+      if (!posortowanaMapa.containsKey(para.getValue())){
+        List<String> listaMiejscowosci = new ArrayList<>();
+        listaMiejscowosci.add(para.getKey());
+        posortowanaMapa.put(para.getValue(), listaMiejscowosci);
+      }else{
+        List<String> listaMiesjcowosci = posortowanaMapa.get(para.getValue());
+        listaMiesjcowosci.add(para.getKey());
+        posortowanaMapa.put(para.getValue(), listaMiesjcowosci);
+      }
+    }
+    boolean canContinue = true;
+    while(canContinue){
+      int ilosc = 0;
+      Iterator<Map.Entry<Integer, List<String>>> iter = posortowanaMapa.entrySet().iterator();
+      while(iter.hasNext()){
+        List<String> lista = iter.next().getValue();
+        ilosc = ilosc + lista.size();
+        System.out.println(lista);
+        if (ilosc>4){
+          canContinue=false;
+          break;
+        }
+      }
+    }
+
+  }
+
+  private static void lista5MiejscowosciZNajwiekszaLiczbaPracownikowDrugiSposob(List<Pracownik> pracownicy){
+    List<MiejscowoscLiczbaPracownikow> lista = new ArrayList<MiejscowoscLiczbaPracownikow>();
+    for (Pracownik pracownik : pracownicy){
+      MiejscowoscLiczbaPracownikow miejscowoscLiczbaPracownikow = new MiejscowoscLiczbaPracownikow(pracownik.getMiejscowosc());
+      if (lista.contains(miejscowoscLiczbaPracownikow)){
+        lista.get(lista.indexOf(miejscowoscLiczbaPracownikow)).dodajPracownika();
+      }else{
+        miejscowoscLiczbaPracownikow.dodajPracownika();
+        lista.add(miejscowoscLiczbaPracownikow);
+      }
+    }
+    Collections.sort(lista, new Comparator<MiejscowoscLiczbaPracownikow>() {
+      @Override public int compare(MiejscowoscLiczbaPracownikow o1, MiejscowoscLiczbaPracownikow o2) {
+        return o2.getLiczbaPracownikow() - o1.getLiczbaPracownikow();
+      }
+    });
+    for (int i=0;i<5;i++){
+      System.out.println(lista.get(i).getMiejscowosc());
+    }
   }
 
   private static String wypiszPracownika(Object... parametry){

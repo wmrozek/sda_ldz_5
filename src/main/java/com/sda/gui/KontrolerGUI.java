@@ -1,5 +1,6 @@
 package com.sda.gui;
 
+import com.sda.Gatunek;
 import com.sda.sortowanie.Sortowanie;
 import com.sda.sortowanie.SortowanieBabelkowe;
 import com.sda.sortowanie.SortowaniePrzezWstawianie;

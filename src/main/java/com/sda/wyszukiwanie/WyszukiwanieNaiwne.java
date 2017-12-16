@@ -1,5 +1,7 @@
 package com.sda.wyszukiwanie;
 
+import java.util.List;
+
 public class WyszukiwanieNaiwne implements Wyszukiwanie{
 
   private int[] tablicaDoPrzeszukania;
@@ -34,6 +36,10 @@ public class WyszukiwanieNaiwne implements Wyszukiwanie{
 
   @Override public int szukaj(int liczba) {
     return szukaj(liczba, tablicaDoPrzeszukania);
+  }
+
+  @Override public List<Integer> szukajWszystkie(int liczba) {
+    return null;
   }
 
   @Override public int getLicznikWywolan() {

@@ -3,6 +3,8 @@ package com.sda.wyszukiwanie;
 import com.sda.sortowanie.Sortowanie;
 import com.sda.sortowanie.SortowanieSzybkie;
 
+import java.util.List;
+
 public class WyszukiwanieBinarne implements Wyszukiwanie{
 
   private int[] tablicaDoPrzeszukania;
@@ -54,6 +56,10 @@ public class WyszukiwanieBinarne implements Wyszukiwanie{
 
   @Override public int szukaj(int liczba) {
     return szukaj(liczba, tablicaDoPrzeszukania);
+  }
+
+  @Override public List<Integer> szukajWszystkie(int liczba) {
+    return null;
   }
 
   @Override public int getLicznikWywolan() {
